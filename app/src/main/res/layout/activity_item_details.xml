@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@mipmap/bg"
+    tools:context="com.example.daniyal.govava.ItemDetails">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorHeader"
+            android:paddingBottom="28dp"
+            android:id="@+id/Relative1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/bac"
+                android:id="@+id/ItemDetailBack"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="27dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Details"
+                android:textSize="20dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginLeft="80dp"
+                android:textColor="@color/colorWhite"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/menitems_cart_notification"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="25dp"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/Relative2"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/WatchImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:src="@mipmap/itemdetails_image" />
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/WatchImage"
+                    android:layout_marginTop="-2dp"
+                    android:paddingRight="5dp"
+                    android:src="@mipmap/itemdetails_gradient" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/WatchImage"
+                    android:layout_marginLeft="288dp"
+                    android:id="@+id/ItemDetailBtn"
+                    android:layout_marginTop="-25dp"
+                    android:src="@mipmap/buy_btn" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/WatchImage"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="25dp"
+                    android:id="@+id/Desc"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:text="New Men's Crocodile Faux \nAnalog Watch"
+                    android:textColor="@color/colorWhite"
+                    />
+
+                <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Desc"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@mipmap/itemdetails_rating"
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ItemDetailBtn"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25dp"
+                    android:text="PRICE"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:id="@+id/Price"
+                    android:textColor="@color/colorWhite"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Price"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25dp"
+                    android:text="$120.00"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:id="@+id/PriceNo"
+                    android:textColor="@color/colorWhite"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/PriceNo"
+                    android:layout_alignParentRight="true"
+                   android:paddingRight="20dp"
+                    android:gravity="center"
+                    android:hint="or Best Offer was 5% Off"
+                    android:id="@+id/PriceOffer"
+                    android:textSize="10dp"
+                    android:textColorHint="@color/colorWhite"
+
+                    />
+
+
+
+
+            </RelativeLayout>
+
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="280dp"
+
+                android:background="@color/colorWhite"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:id="@+id/TextAbout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="About this item"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/Condition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/TextAbout"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:hint="Condition"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+                <TextView
+                    android:id="@+id/NewWithTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/TextAbout"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:text="New with tag"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/Quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Condition"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:hint="Quantity"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+                <TextView
+                    android:id="@+id/AlmostGone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/NewWithTag"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Almost gone"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorRed" />
+
+                <TextView
+                    android:id="@+id/Number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/AlmostGone"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="4dp"
+                    android:hint="3884 sold"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+
+                <TextView
+                    android:id="@+id/Brand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Quantity"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="28dp"
+                    android:hint="Brand"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+
+                <TextView
+                    android:id="@+id/Generic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/Number"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Unbranded/Generic"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/Case"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Brand"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="26dp"
+                    android:hint="Case Material"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+
+                <TextView
+                    android:id="@+id/stainless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/Generic"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="18dp"
+                    android:text="Stainless steel"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorBlack" />
+
+
+                <TextView
+                    android:id="@+id/Gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Case"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:hint="Brand"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+
+                <TextView
+                    android:id="@+id/MENs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/stainless"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="18dp"
+                    android:text="Men's"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorBlack" />
+
+                <View
+                    android:id="@+id/Vview"
+                    android:layout_width="300dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/MENs"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/colorGry"
+
+                    ></View>
+
+
+                <TextView
+                    android:id="@+id/Paragraph"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Vview"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:hint="Luxury Fashion Crocodile Faux Men's Analog Watch New Display type: Analog 1x Stylish mens's watch. Brand material PU Leather."
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+
+                <View
+                    android:id="@+id/Vview2"
+                    android:layout_width="300dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/Paragraph"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/colorGry"
+
+                    ></View>
+
+
+                <TextView
+                    android:id="@+id/Head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Vview2"
+
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="18dp"
+                    android:text="Shipping, Returns and Payment "
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/Delivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Head"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:hint="Est. delivery"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+
+                <TextView
+                    android:id="@+id/Datedelivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/Head"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="17dp"
+                    android:text="Mon, Oct 2 - Fri, Nov 10"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/Date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/Datedelivery"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="3dp"
+                    android:hint="From HongKong CN"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorBlack" />
+
+
+                <TextView
+                    android:id="@+id/Return"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Delivery"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="35dp"
+                    android:hint="Returns"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+
+                <TextView
+                    android:id="@+id/Daysdelivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/Datedelivery"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="35dp"
+                    android:text="Accepted within 30days"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/retunshipping"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/Daysdelivery"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="2dp"
+                    android:hint="Pays return shipping"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/Payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Return"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="35dp"
+                    android:hint="Payment"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/retunshipping"
+                    android:layout_marginRight="90dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@mipmap/itemdetails_paypal_logo" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/retunshipping"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="22dp"
+                    android:src="@mipmap/itemdetailsvisa" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/retunshipping"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@mipmap/itemdetails_mastercard_logo" />
+
+
+                <View
+                    android:id="@+id/Vview3"
+                    android:layout_width="300dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/Payment"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/colorGry"
+
+                    ></View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Vview3"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="18dp"
+                    android:id="@+id/Head2"
+                    android:text="Ratings and Reviews"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@id/Head2"
+                    android:text="4.5"
+                    android:id="@+id/RatingNumber"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorGry"
+                    android:textSize="80dp"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/Head2"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="60dp"
+                    android:id="@+id/Rating"
+                    android:src="@mipmap/rating_and_reviews_ecllipse"
+
+                     />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="38 rating"
+                    android:layout_below="@id/Rating"
+                    android:layout_marginRight="70dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_alignParentRight="true"
+
+                    />
+
+
+                <View
+                    android:id="@+id/Vview4"
+                    android:layout_width="300dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/RatingNumber"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/colorGry"
+
+                    ></View>
+
+
+              <ImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/Vview4"
+                  android:layout_marginTop="15dp"
+                  android:paddingRight="20dp"
+                  android:paddingLeft="20dp"
+                  android:id="@+id/GoodValue"
+                  android:src="@mipmap/goodvalue_ecllipse"
+                  />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Vview4"
+                    android:layout_marginTop="15dp"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/goodvalue_ecllipse"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Vview4"
+                    android:layout_marginTop="15dp"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/goodvalue_ecllipse"
+                    />
+
+
+                <View
+                    android:id="@+id/Vview5"
+                    android:layout_width="300dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/GoodValue"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/colorGry"></View>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Vview5"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="18dp"
+                    android:id="@+id/Head3"
+                    android:text="Most Relavant Reviews"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Head3"
+                    android:layout_marginTop="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    android:id="@+id/Ratingbar2"
+                    android:src="@mipmap/rating"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Ratingbar2"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/RAtingText"
+                    android:text="by idanbotbol"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/colorGry"
+                     />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Ratingbar2"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/RAtingText2"
+                    android:text="Jul 30, 2017"
+                    android:layout_alignParentRight="true"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/colorGry"
+                    />
+
+
+                <View
+                    android:id="@+id/Vview6"
+                    android:layout_width="300dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/RAtingText2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/colorGry"></View>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Vview6"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="18dp"
+                    android:id="@+id/Head4"
+                    android:text="Ratings and Reviews"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Head4"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="18dp"
+                    android:id="@+id/Head4Text"
+                    android:paddingRight="5dp"
+                    android:text="Cant't ask for more for the price,light weight, comfortable and price and nice looking watch. pros:- price- light weight - comfortable - watchitself."
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorGry" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Head4Text"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="18dp"
+                    android:id="@+id/Head4Text2"
+                    android:layout_alignParentRight="true"
+                    android:text="See all reviews >>"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorHeader" />
+
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/buyitnow_btn"
+                    android:id="@+id/Head4Image"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/Head4Text2"
+
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buy it now"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginTop="23dp"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:layout_below="@id/Head4Text2"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/buyitnow_btn"
+                    android:id="@+id/Head4Image2"
+
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@id/Head4Image"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Share this item"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginTop="20dp"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:layout_below="@id/Head4Image"
+                    android:layout_centerHorizontal="true"
+                    />
+
+
+
+
+
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

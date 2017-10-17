@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@mipmap/bg"
+    tools:context="com.example.daniyal.govava.MenWear">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorHeader"
+            android:paddingBottom="35dp"
+            android:id="@+id/Relative1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/bac"
+                android:id="@+id/MenBack"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="27dp"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/home_logo"
+                android:id="@+id/MenHeading"
+                android:textSize="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="70dp"
+                android:textColor="@color/colorWhite"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/menitems_cart_notification"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="29dp"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="-15dp">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/search_bar"
+                android:focusableInTouchMode="false"
+                android:hint=" \tSearch by product"
+                android:drawableLeft="@mipmap/searchbar_search_icon"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:drawableRight="@mipmap/searchbar_cross_icon"
+
+                />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+   <ScrollView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_gravity="center"
+       >
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view1"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="1dp"
+            card_view:cardElevation="5dp"
+            card_view:cardUseCompatPadding="true">
+
+
+
+                    <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                        android:id="@+id/Image1"
+                    android:src="@mipmap/mensculture_tab_one"
+                    />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Men Wear"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+               android:layout_gravity="bottom|center"
+                android:layout_marginBottom="10dp"
+
+                />
+
+
+        </android.support.v7.widget.CardView>
+
+
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view5"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="1dp"
+            card_view:cardElevation="5dp"
+            card_view:cardUseCompatPadding="true">
+
+
+
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/mensculture_tab_two"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Party Wear"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="10dp"
+
+                />
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view4"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="1dp"
+            card_view:cardElevation="5dp"
+            card_view:cardUseCompatPadding="true">
+
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/mensculture_tab_three"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Winter Collection"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="10dp"
+
+                />
+
+        </android.support.v7.widget.CardView>
+
+
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view3"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="1dp"
+            card_view:cardElevation="5dp"
+            card_view:cardUseCompatPadding="true">
+
+
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/mensculture_tab_four"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MidSummer Collection"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="10dp"
+
+                />
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:layout_marginTop="10dp"
+               android:orientation="horizontal">
+
+
+
+               <android.support.v7.widget.CardView
+                   android:id="@+id/card_view"
+                   xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   card_view:cardCornerRadius="1dp"
+                   card_view:cardElevation="5dp"
+                   card_view:cardUseCompatPadding="true">
+
+
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@mipmap/mensculture_tab_five"
+                       />
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Pret Collection"
+                       android:textColor="@color/colorBlack"
+                       android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                       android:layout_gravity="bottom|center"
+                       android:layout_marginBottom="10dp"
+
+                       />
+
+               </android.support.v7.widget.CardView>
+
+
+
+
+               <android.support.v7.widget.CardView
+                   android:id="@+id/card_view2"
+                   xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   card_view:cardCornerRadius="1dp"
+                   card_view:cardElevation="5dp"
+                   card_view:cardUseCompatPadding="true">
+
+
+
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@mipmap/mensculture_tab_six"
+                       />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Royal"
+                       android:textColor="@color/colorBlack"
+                       android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                       android:layout_gravity="bottom|center"
+                       android:layout_marginBottom="10dp"
+
+                       />
+
+               </android.support.v7.widget.CardView>
+
+           </LinearLayout>
+
+       </LinearLayout>
+
+   </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="-60dp"
+        android:gravity="right"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/MenFilterButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/filter_btn" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
