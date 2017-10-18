@@ -1,9 +1,12 @@
 package com.example.daniyal.govava;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -18,6 +21,14 @@ public class FilterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Window window = this.getWindow();
+        window.setBackgroundDrawableResource(R.mipmap.filter_bg);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(Color.TRANSPARENT);
+
+
         setContentView(R.layout.activity_filter);
         imageView = (ImageView) findViewById(R.id.FilterCross);
        // rangeSeekBar = (RangeSeekBar) findViewById(R.id.rangeSeekbar);

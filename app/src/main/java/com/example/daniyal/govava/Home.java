@@ -3,6 +3,7 @@ package com.example.daniyal.govava;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,7 +24,7 @@ public class Home extends AppCompatActivity implements  View.OnClickListener {
     String names[];
     DrawerLayout mDrawerLayout;
     ListView mDrawerList;
-    ImageView toggle;
+    ImageView toggle , imageView3;
 
     EditText e1;
 
@@ -36,6 +37,7 @@ public class Home extends AppCompatActivity implements  View.OnClickListener {
         showMore = (TextView) findViewById(R.id.HomeShowmore);
         imageView = (ImageView) findViewById(R.id.HomeMen);
         imageView2 = (ImageView) findViewById(R.id.HomeDrawer);
+        imageView3 = (ImageView) findViewById(R.id.HomeCart);
         e1 = (EditText) findViewById(R.id.HomeSearch);
         //ImageView drawer = (ImageView) findViewById(R.id.imageView77);
 
@@ -46,6 +48,14 @@ public class Home extends AppCompatActivity implements  View.OnClickListener {
         Handpicked.setTypeface(typeface3);
         Categories.setTypeface(typeface3);
         showMore.setTypeface(typeface3);
+
+        imageView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Home.this, cart.class);
+                startActivity(intent);
+            }
+        });
 
 
         showMore.setOnClickListener(new View.OnClickListener() {

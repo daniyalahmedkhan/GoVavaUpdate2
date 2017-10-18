@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="How old is the person?"
+            android:text="Select your price range"
             android:textSize="20dp"
             android:textColor="@color/colorBlack"
             />
@@ -36,17 +36,16 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2 - 9"
+            android:text="$2-25"
             android:id="@+id/Radio1"
             android:onClick="onRadioButtonClicked"
             android:layout_marginTop="10dp"
             android:textSize="20dp"
             />
-
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10 - 12"
+            android:text="$30-40"
             android:id="@+id/Radio2"
             android:onClick="onRadioButtonClicked"
             android:layout_marginTop="10dp"
@@ -55,7 +54,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="13 - 15"
+            android:text="$45-50"
             android:id="@+id/Radio3"
             android:onClick="onRadioButtonClicked"
             android:layout_marginTop="10dp"
@@ -64,7 +63,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="16 - 24 "
+            android:text="$75-100"
             android:id="@+id/Radio4"
             android:onClick="onRadioButtonClicked"
             android:layout_marginTop="10dp"
@@ -73,48 +72,13 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="25 - 32 "
+            android:text="More+"
             android:id="@+id/Radio5"
             android:onClick="onRadioButtonClicked"
             android:layout_marginTop="10dp"
             android:textSize="20dp"
             />
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="33 - 45 "
-            android:id="@+id/Radio6"
-            android:onClick="onRadioButtonClicked"
-            android:layout_marginTop="10dp"
-            android:textSize="20dp"
-            />
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="46 - 55"
-            android:id="@+id/Radio7"
-            android:onClick="onRadioButtonClicked"
-            android:layout_marginTop="10dp"
-            android:textSize="20dp"
-            />
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="56 - 65"
-            android:id="@+id/Radio8"
-            android:onClick="onRadioButtonClicked"
-            android:layout_marginTop="10dp"
-            android:textSize="20dp"
-            />
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="65 - older"
-            android:id="@+id/Radio9"
-            android:onClick="onRadioButtonClicked"
-            android:layout_marginTop="10dp"
-            android:textSize="20dp"
-            />
+
 
 
     </RadioGroup>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What is the purpose of this gift? "
+            android:textSize="20dp"
+            android:textColor="@color/colorBlack"
+            />
+
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical"
+        android:id="@+id/radioGroup"
+        android:layout_marginTop="20dp">
+
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Birthday "
+            android:id="@+id/Radio1"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bridal"
+            android:id="@+id/Radio2"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thanksgiving "
+            android:id="@+id/Radio3"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Christmas "
+            android:id="@+id/Radio4"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Easter "
+            android:id="@+id/Radio5"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hanukah "
+            android:id="@+id/Radio6"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New born "
+            android:id="@+id/Radio7"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Baby Shower "
+            android:id="@+id/Radio8"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bachelorette/Bachelor Party "
+            android:id="@+id/Radio9"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Promotion"
+            android:id="@+id/Radio10"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sympathy "
+            android:id="@+id/Radio11"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Graduation"
+            android:id="@+id/Radio12"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Passed a Big Exam"
+            android:id="@+id/Radio13"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Surgery"
+            android:id="@+id/Radio14"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get Well Soon/Welcome Home from Hospital"
+            android:id="@+id/Radio15"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weight Loss"
+            android:id="@+id/Radio16"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thank You/Appreciation"
+            android:id="@+id/Radio17"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sympathy"
+            android:id="@+id/Radio18"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apology"
+            android:id="@+id/Radio19"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Christening/Confirmation"
+            android:id="@+id/Radio20"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Employee Gifts "
+            android:id="@+id/Radio21"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Employee Gifts (custom logos)"
+            android:id="@+id/Radio22"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bar Mitzvahs"
+            android:id="@+id/Radio23"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Just Because/Thinking of You"
+            android:id="@+id/Radio24"
+            android:onClick="onRadioButtonClicked"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            />
+    </RadioGroup>
+    </ScrollView>
+
+
+</LinearLayout>

@@ -101,6 +101,7 @@
             android:background="@color/colorWhite"
             android:id="@+id/Question3Dialouge"
             android:hint="$ 2-25"
+            android:focusableInTouchMode="false"
             android:drawableRight="@mipmap/filter_dropdowm"
             android:paddingLeft="35dp"
             android:paddingRight="35dp"

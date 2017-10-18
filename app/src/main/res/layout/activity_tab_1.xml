@@ -13,9 +13,38 @@
         android:layout_centerHorizontal="true"
         android:background="@mipmap/bg"
 
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="58dp">
+
+    <!--<view-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="2dp"-->
+        <!--android:background="@color/colorBlack"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--/>-->
 
 
+      <!--<LinearLayout-->
+          <!--android:layout_width="match_parent"-->
+          <!--android:layout_height="wrap_content"-->
+          <!--android:orientation="vertical"-->
+          <!--android:weightSum="2"-->
+          <!--&gt;-->
+          <!--<LinearLayout-->
+              <!--android:layout_width="180dp"-->
+              <!--android:layout_height="10dp"-->
+              <!--android:layout_weight="1"-->
+              <!--android:layout_marginTop="-3dp"-->
+              <!--android:background="#cb9b2b"-->
+              <!--&gt;</LinearLayout>-->
+       <!--<LinearLayout-->
+           <!--android:layout_width="180dp"-->
+           <!--android:layout_height="3dp"-->
+           <!--android:layout_weight="1"-->
+           <!--android:layout_marginTop="-7dp"-->
+           <!--android:background="@color/colorWhite"-->
+           <!--&gt;</LinearLayout>-->
+
+      <!--</LinearLayout>-->
 
         <EditText
             android:layout_width="match_parent"

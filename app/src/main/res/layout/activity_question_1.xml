@@ -101,6 +101,9 @@
             android:drawableRight="@mipmap/filter_dropdowm"
             android:paddingLeft="35dp"
             android:paddingRight="35dp"
+
+            android:focusableInTouchMode="false"
+
             android:background="@color/colorWhite"
             android:id="@+id/Question1Edit">
 
