@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -31,36 +34,42 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.IOException;
+import java.net.URI;
 
 public class RegistrationActivity extends Activity {
 
+    private static final int PICK_IMAGE_REQUEST = 234 ;
     TextView t1 , t2 , t3 , t4;
     EditText e1 , e2 ,e3 ,e4 ,e5 ,e6;
-    ImageView imageView;
+    ImageView imageView , ProfileImage , ProfileUpload;
     ProgressDialog progressDialog;
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
     String Uname, Uemail , Upass , Uconpass , Uadress , Uphone;
     String UID;
+    private StorageReference storageReference;
+    private Uri filepath;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Window window = this.getWindow();
         window.setBackgroundDrawableResource(R.drawable.login_cover);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.setStatusBarColor(Color.TRANSPARENT);
-
-
-
         setContentView(R.layout.activity_registration);
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
         firebaseAuth = FirebaseAuth.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
         progressDialog = new ProgressDialog(this);
         t1 = (TextView) findViewById(R.id.RegName);
         t2 = (TextView) findViewById(R.id.RegEmail);
@@ -73,6 +82,8 @@ public class RegistrationActivity extends Activity {
         e4 = (EditText) findViewById(R.id.ConfirmPassword);
         e5 = (EditText) findViewById(R.id.Adress);
         e6 = (EditText) findViewById(R.id.PhoneNumber);
+        ProfileImage = (ImageView) findViewById(R.id.profile_image);
+        ProfileUpload = (ImageView) findViewById(R.id.reg_uploadImage);
 
 
         Typeface typeface3 = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
@@ -91,7 +102,16 @@ public class RegistrationActivity extends Activity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ValidationMethod();
+               ValidationMethod();
+
+            }
+        });
+
+
+        ProfileUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OpenGallery();
             }
         });
 
@@ -196,7 +216,7 @@ public class RegistrationActivity extends Activity {
                     Toast.makeText(RegistrationActivity.this , "Error in Saving" , Toast.LENGTH_SHORT).show();
                 }else {
 
-
+                    uploadfile();
                     progressDialog.dismiss();
                     Intent i = new Intent(RegistrationActivity.this , LoginActivity.class);
                     startActivity(i);
@@ -208,6 +228,68 @@ public class RegistrationActivity extends Activity {
     }
 
 
+    public void OpenGallery(){
+
+
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select any image") , PICK_IMAGE_REQUEST);
+
+
+    }
+
+
+    private void uploadfile(){
+
+
+        if (filepath != null){
+        StorageReference riversRef = storageReference.child(UID+"/"+UID);
+        /// MAIN FOLDER MAIN JA K UID KA FOLDER HOGA THEN IMAGE HOGI:
+        riversRef.putFile(filepath)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Uri downUrl = taskSnapshot.getDownloadUrl();
+                            Log.d("downUrl" , downUrl.toString());
+                    }
+
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+        }else {
+
+            Toast.makeText(RegistrationActivity.this , " This error from upload file" , Toast.LENGTH_SHORT).show();
+
+        }
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK  &&  data != null && data.getData() != null){
+
+                filepath = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filepath);
+                ProfileImage.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+    }
 }
 
 
