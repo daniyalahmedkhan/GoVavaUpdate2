@@ -121,6 +121,7 @@
                     android:drawableLeft="@mipmap/username_icon"
                     android:paddingRight="30dp"
                     android:id="@+id/FullName"
+                    android:inputType="text"
                     android:background="@color/colorWhite"
                     />
                 <EditText
@@ -134,6 +135,7 @@
                     android:drawablePadding="20dp"
                     android:paddingRight="30dp"
                     android:layout_marginTop="10dp"
+                    android:inputType="textEmailAddress"
                     android:background="@color/colorWhite"
                     />
                 <EditText
@@ -147,6 +149,7 @@
                     android:layout_below="@id/EmailAddress"
                     android:id="@+id/Password"
                     android:layout_marginTop="10dp"
+                    android:inputType="textPassword"
                     android:background="@color/colorWhite"
                     />
                 <EditText
@@ -160,6 +163,7 @@
                     android:layout_below="@id/Password"
                     android:id="@+id/ConfirmPassword"
                     android:layout_marginTop="10dp"
+                    android:inputType="textPassword"
                     android:background="@color/colorWhite"
                     />
 
@@ -174,6 +178,7 @@
                     android:layout_below="@id/ConfirmPassword"
                     android:background="@color/colorWhite"
                     android:layout_marginTop="10dp"
+                    android:inputType="text"
                     android:id="@+id/Adress" />
 
                 <EditText
@@ -187,6 +192,7 @@
                     android:layout_below="@id/Adress"
                     android:background="@color/colorWhite"
                     android:id="@+id/PhoneNumber"
+                    android:inputType="number"
                     android:layout_marginTop="10dp" />
 
 

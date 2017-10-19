@@ -1,24 +1,47 @@
 package com.example.daniyal.govava;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationActivity extends Activity {
 
     TextView t1 , t2 , t3 , t4;
     EditText e1 , e2 ,e3 ,e4 ,e5 ,e6;
     ImageView imageView;
+    ProgressDialog progressDialog;
+    FirebaseAuth firebaseAuth;
+    DatabaseReference databaseReference;
+    String Uname, Uemail , Upass , Uconpass , Uadress , Uphone;
+    String UID;
 
 
     @Override
@@ -36,9 +59,9 @@ public class RegistrationActivity extends Activity {
         setContentView(R.layout.activity_registration);
 
 
-
-
-
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        firebaseAuth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
         t1 = (TextView) findViewById(R.id.RegName);
         t2 = (TextView) findViewById(R.id.RegEmail);
         t3 = (TextView) findViewById(R.id.RegSign);
@@ -68,10 +91,125 @@ public class RegistrationActivity extends Activity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegistrationActivity.this , Home.class);
-                startActivity(intent);
+                ValidationMethod();
             }
         });
 
     }
+
+
+    /// Input field Validation Method //
+
+    public void ValidationMethod(){
+
+        progressDialog.setCancelable(true);
+        progressDialog.setMessage("Please Wait");
+        progressDialog.show();
+       String  name = e1.getText().toString().trim();
+       String  email = e2.getText().toString().trim();
+       String  pass = e3.getText().toString().trim();
+       String  conPass = e4.getText().toString().trim();
+       String  adress = e5.getText().toString().trim();
+       String  phone = e6.getText().toString().trim();
+
+
+
+
+        if((TextUtils.isEmpty(name)) || (TextUtils.isEmpty(email)) ||
+                (TextUtils.isEmpty(pass)) || (TextUtils.isEmpty(conPass)) ||
+                (TextUtils.isEmpty(adress)) || TextUtils.isEmpty(phone)){
+
+            Toast.makeText(RegistrationActivity.this , " Validation Required " , Toast.LENGTH_SHORT).show();
+            progressDialog.cancel();
+        }else if(!(email.contains("@gmail.com")) || (email.contains("@yahoo.com")) ||
+
+                (email.contains("@hotmail.com")) || (email.contains("@live.com"))){
+
+
+            e2.setError("Please enter valid email");
+            progressDialog.cancel();
+
+        }else if(e3.length() < 6){
+
+
+            e3.setError("Password must contains 6 digits");
+            progressDialog.cancel();
+        }else{
+
+            //Toast.makeText(RegistrationActivity.this , " Good to Go " , Toast.LENGTH_SHORT).show();
+
+            Uname = e1.getText().toString().trim();
+            Uemail = e2.getText().toString().trim();
+            Upass = e3.getText().toString().trim();
+            Uconpass = e4.getText().toString().trim();
+            Uadress = e5.getText().toString().trim();
+            Uphone = e6.getText().toString().trim();
+            RegUser();
+
+        }
+
+
+    }
+
+
+    public void RegUser() {
+
+
+        firebaseAuth.createUserWithEmailAndPassword(Uemail , Upass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                UID = firebaseAuth.getCurrentUser().getUid();
+                Log.d("userid" ,  UID.toString());
+                //FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+                //Toast.makeText(RegistrationActivity.this , " Success" , Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegistrationActivity.this , " " + currentFirebaseUser , Toast.LENGTH_SHORT).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+
+
+                SaveData();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegistrationActivity.this , "Failed to Add" , Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+    }
+
+
+    public void SaveData(){
+
+
+        ModelClass Mod = new ModelClass(Uname , Uemail , Upass , Uconpass , Uadress , Uphone , UID);
+        databaseReference.child(UID).setValue(Mod, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if (databaseReference.equals(databaseError)){
+                    progressDialog.dismiss();
+                    Toast.makeText(RegistrationActivity.this , "Error in Saving" , Toast.LENGTH_SHORT).show();
+                }else {
+
+
+                    progressDialog.dismiss();
+                    Intent i = new Intent(RegistrationActivity.this , LoginActivity.class);
+                    startActivity(i);
+                }
+
+            }
+        });
+
+    }
+
+
 }
+
+
+
+
