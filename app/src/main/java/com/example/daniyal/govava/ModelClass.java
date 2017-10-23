@@ -13,11 +13,12 @@ public class ModelClass {
     String adress;
     String phone;
     String id;
+    String imageUrl;
 
     public ModelClass() {
     }
 
-    public ModelClass(String name, String email, String pass, String conpass, String adress, String phone , String id) {
+    public ModelClass(String name, String email, String pass, String conpass, String adress, String phone , String id , String imageUrl) {
         this.name = name;
         this.email = email;
         this.pass = pass;
@@ -25,8 +26,17 @@ public class ModelClass {
         this.adress = adress;
         this.phone = phone;
         this.id = id;
+        this.imageUrl = imageUrl;
     }
 
+
+    public ModelClass(String name, String email, String id, String imageUrl, String phone) {
+        this.name = name;
+        this.email = email;
+        this.id = id;
+        this.imageUrl = imageUrl;
+        this.phone = phone;
+    }
 
     public String getName() {
         return name;
@@ -54,5 +64,9 @@ public class ModelClass {
 
     public String getId() {
         return id;
+    }
+
+    public ModelClass(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

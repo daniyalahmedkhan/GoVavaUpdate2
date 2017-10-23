@@ -1,5 +1,6 @@
 package com.example.daniyal.govava;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -17,15 +18,30 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.facebook.login.LoginManager;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 public class Home extends AppCompatActivity implements  View.OnClickListener {
 
-    TextView showMore, Handpicked, Categories;
+    TextView showMore, Handpicked, Categories , UserName;
     ImageView imageView , imageView2;
     String names[];
     DrawerLayout mDrawerLayout;
     ListView mDrawerList;
+    ImageView MyimageView;
     ImageView toggle , imageView3;
-
+    DatabaseReference databaseReference;
+    FirebaseStorage firebaseStorage;
+    FirebaseAuth firebaseAuth;
+    ProgressDialog progressDialog;
     EditText e1;
 
     @Override
@@ -39,7 +55,9 @@ public class Home extends AppCompatActivity implements  View.OnClickListener {
         imageView2 = (ImageView) findViewById(R.id.HomeDrawer);
         imageView3 = (ImageView) findViewById(R.id.HomeCart);
         e1 = (EditText) findViewById(R.id.HomeSearch);
-        //ImageView drawer = (ImageView) findViewById(R.id.imageView77);
+        progressDialog = new ProgressDialog(this);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
 
 
@@ -80,17 +98,22 @@ public class Home extends AppCompatActivity implements  View.OnClickListener {
             public void onClick(View v) {
                 Intent intent = new Intent(Home.this, Search.class);
                 startActivity(intent);
+
+
+
             }
         });
 
 
         ///Side Drawer///
 
-        names = new String[]{"Home", "Notification", "What to buy?" , "MY GOVAVA", "Pets", "Favorites" , "My Purchases" , "" , "Categories" , "Settings" , "Help Contact"  };
-        int img[] = {R.mipmap.sidemenu_home_icon, R.mipmap.sidemenu_notification_icon, R.mipmap.sidemenu_what_to_buy_icon, 0 , R.mipmap.sidemenu_pets_icon , R.mipmap.sidemenu_favourites_icon ,  R.mipmap.sidemenu_mypurchases_notification_icon , 0 , R.mipmap.sidemenu_categories_icon , R.mipmap.sidemenu_setting_icon ,    R.mipmap.sidemenu_help_and_contact_icon };
+        names = new String[]{"Home", "Notification", "What to buy?" , "MY GOVAVA", "Pets", "Favorites" , "My Purchases" , "" , "Categories" , "Settings" , "Help Contact" , "Log out" };
+        int img[] = {R.mipmap.sidemenu_home_icon, R.mipmap.sidemenu_notification_icon, R.mipmap.sidemenu_what_to_buy_icon, 0 , R.mipmap.sidemenu_pets_icon , R.mipmap.sidemenu_favourites_icon ,  R.mipmap.sidemenu_mypurchases_notification_icon , 0 , R.mipmap.sidemenu_categories_icon , R.mipmap.sidemenu_setting_icon ,    R.mipmap.sidemenu_help_and_contact_icon , R.mipmap.logout_sidemenu_icon };
         //mPlanetTitles = getResources().getStringArray(R.array.planets_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
+
+
 
         mDrawerList.setFitsSystemWindows(true);
 
@@ -104,7 +127,8 @@ public class Home extends AppCompatActivity implements  View.OnClickListener {
 
         mDrawerList.addHeaderView(header, null, false);
 
-        ImageView imageViewhead = (ImageView) header.findViewById(R.id.proImg);
+        MyimageView = (ImageView) header.findViewById(R.id.proImg);
+        UserName = (TextView) findViewById(R.id.Emp_Name);
 
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +153,10 @@ public class Home extends AppCompatActivity implements  View.OnClickListener {
         });
 
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+        progressDialog.setMessage(".. Please Wait");
+        progressDialog.show();
+        getData();
     }
 
     @Override
@@ -193,7 +221,46 @@ public class Home extends AppCompatActivity implements  View.OnClickListener {
 //                startActivity(i);
 //                Log.i("test","check");
                 break;
+
+            case 12:
+
+                FirebaseAuth.getInstance().signOut();
+                LoginManager.getInstance().logOut();
+                i = new Intent(Home.this, LoginActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+                break;
         }
+
+
+    }
+    public void getData(){
+
+
+        databaseReference.child(LoginActivity.UID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                ModelClass Mod = dataSnapshot.getValue(ModelClass.class);
+                String name =   Mod.name;
+                String url = Mod.imageUrl;
+                String email = Mod.email;
+              //Toast.makeText(Home.this, "EMAIL" + email , Toast.LENGTH_LONG).show();
+                Glide.with(getApplicationContext()).load(url).into(MyimageView);
+
+                UserName.setText(name.toString());
+
+                progressDialog.dismiss();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
 
     }

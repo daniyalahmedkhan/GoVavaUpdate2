@@ -51,7 +51,7 @@ public class RegistrationActivity extends Activity {
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
     String Uname, Uemail , Upass , Uconpass , Uadress , Uphone;
-    String UID;
+    String UID , imageUrl;
     private StorageReference storageReference;
     private Uri filepath;
 
@@ -102,7 +102,8 @@ public class RegistrationActivity extends Activity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               ValidationMethod();
+
+                ValidationMethod();
 
             }
         });
@@ -180,7 +181,7 @@ public class RegistrationActivity extends Activity {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 UID = firebaseAuth.getCurrentUser().getUid();
-                Log.d("userid" ,  UID.toString());
+              //  Log.d("userid" ,  UID.toString());
                 //FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
                 //Toast.makeText(RegistrationActivity.this , " Success" , Toast.LENGTH_SHORT).show();
                 //Toast.makeText(RegistrationActivity.this , " " + currentFirebaseUser , Toast.LENGTH_SHORT).show();
@@ -189,13 +190,13 @@ public class RegistrationActivity extends Activity {
             @Override
             public void onSuccess(AuthResult authResult) {
 
+                uploadfile();
 
-                SaveData();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(RegistrationActivity.this , "Failed to Add" , Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegistrationActivity.this , "Failed to Add" , Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -207,7 +208,7 @@ public class RegistrationActivity extends Activity {
     public void SaveData(){
 
 
-        ModelClass Mod = new ModelClass(Uname , Uemail , Upass , Uconpass , Uadress , Uphone , UID);
+        ModelClass Mod = new ModelClass(Uname , Uemail , Upass , Uconpass , Uadress , Uphone , UID , imageUrl);
         databaseReference.child(UID).setValue(Mod, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
@@ -216,7 +217,7 @@ public class RegistrationActivity extends Activity {
                     Toast.makeText(RegistrationActivity.this , "Error in Saving" , Toast.LENGTH_SHORT).show();
                 }else {
 
-                    uploadfile();
+
                     progressDialog.dismiss();
                     Intent i = new Intent(RegistrationActivity.this , LoginActivity.class);
                     startActivity(i);
@@ -244,7 +245,7 @@ public class RegistrationActivity extends Activity {
 
 
         if (filepath != null){
-        StorageReference riversRef = storageReference.child(UID+"/"+UID);
+        StorageReference riversRef = storageReference.child("images/"+UID+"/profile.jpg");
         /// MAIN FOLDER MAIN JA K UID KA FOLDER HOGA THEN IMAGE HOGI:
         riversRef.putFile(filepath)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -252,6 +253,9 @@ public class RegistrationActivity extends Activity {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Uri downUrl = taskSnapshot.getDownloadUrl();
                             Log.d("downUrl" , downUrl.toString());
+                        imageUrl = downUrl.toString();
+                       // ValidationMethod();
+                        SaveData();
                     }
 
                 })
