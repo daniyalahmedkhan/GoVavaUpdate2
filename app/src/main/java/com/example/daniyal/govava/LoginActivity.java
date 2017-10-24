@@ -22,6 +22,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.TwitterAuthProvider;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterAuthToken;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
+
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -47,10 +56,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
+
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Twitter;
+import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     TextView t1 , t2 , t3 , t4 ,t5;
     EditText e1 , e2;
-    ImageView signin , FacebookLogin , fb;
+    ImageView signin , FacebookLogin , fb , twitter;
     TextView GoToRegistration;
     EditText editText;
    public static String UID;
@@ -69,6 +84,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     FirebaseAuth firebaseAuth;
     DatabaseReference firebaseDatabase;
     LoginButton loginButton;
+    TwitterLoginButton loginButton2;
     CallbackManager callbackManager;
     private String TAG = "data";
     public  String name;
@@ -78,7 +94,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Twitter.initialize(this);
         Window window = this.getWindow();
         window.setBackgroundDrawableResource(R.drawable.login_cover);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -86,7 +102,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         window.setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_login);
         loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton2 = (TwitterLoginButton) findViewById(R.id.login_button2);
         fb = (ImageView) findViewById(R.id.fb);
+        twitter = (ImageView) findViewById(R.id.twitter);
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -135,6 +153,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 LoginUser();
             }
         });
+
+
+        //////******** FACEBOOK LOGIN *******////////////
 
         callbackManager = CallbackManager.Factory.create();
         loginButton.setReadPermissions("email", "public_profile");
@@ -189,15 +210,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         };
 
+        /// TWITTER LOGIN///
 
 
+        loginButton2.setCallback(new Callback<TwitterSession>() {
+            @Override
+            public void success(Result<TwitterSession> result) {
+                Log.d(TAG, "twitterLogin:success" + result);
+                handleTwitterSession(result.data);
+            }
 
+            @Override
+            public void failure(TwitterException exception) {
+                Log.w(TAG, "twitterLogin:failure", exception);
+                //updateUI(null);
+            }
+        });
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        loginButton2.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+
     }
 
     @Override
@@ -286,7 +323,76 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 });
     }
 
+        ////////****** LOGIN WITH TWITTER **********///////////////
 
+    private void handleTwitterSession(TwitterSession session) {
+        Log.d(TAG, "handleTwitterSession:" + session);
+
+        AuthCredential credential = TwitterAuthProvider.getCredential(
+                session.getAuthToken().token,
+                session.getAuthToken().secret);
+
+        firebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCredential:success");
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                            String name = "";
+                            String email = "";
+                            UID = "";
+                            String photo = "";
+                            String phone = "";
+                            if (user != null) {
+                                name = user.getDisplayName();
+                                email = user.getEmail();
+                                UID = user.getUid();
+                                photo = String.valueOf(user.getPhotoUrl());
+                                phone = user.getPhoneNumber();
+
+                            }
+
+                            ModelClass  Mod = new ModelClass(name , email , UID , photo , phone);
+                            firebaseDatabase.child(UID).setValue(Mod, new DatabaseReference.CompletionListener() {
+                                @Override
+                                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                    if (databaseReference.equals(databaseError)){
+                                        progressDialog.dismiss();
+                                        //Toast.makeText(RegistrationActivity.this , "Error in Saving" , Toast.LENGTH_SHORT).show();
+                                    }else {
+
+
+                                        progressDialog.dismiss();
+                                        Intent i = new Intent(LoginActivity.this , Home.class);
+                                        startActivity(i);
+                                    }
+
+                                }
+                            });
+
+
+//                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+//                            updateUI(null);
+                        }
+
+                        // ...
+                    }
+                });
+    }
+
+
+
+
+
+    ///////// ******* SIGN IN WITH EMAIL **********///////////////
 
     public void LoginUser(){
 
@@ -333,6 +439,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         if (view == fb) {
             loginButton.performClick();
+        }else if (view == twitter){
+
+            loginButton2.performClick();
         }
     }
 }

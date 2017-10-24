@@ -29,6 +29,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import static android.R.attr.name;
+
 public class Home extends AppCompatActivity implements  View.OnClickListener {
 
     TextView showMore, Handpicked, Categories , UserName;
@@ -237,19 +239,25 @@ public class Home extends AppCompatActivity implements  View.OnClickListener {
     }
     public void getData(){
 
-
+    if (databaseReference.child(LoginActivity.UID) != null){
         databaseReference.child(LoginActivity.UID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 ModelClass Mod = dataSnapshot.getValue(ModelClass.class);
-                String name =   Mod.name;
-                String url = Mod.imageUrl;
-                String email = Mod.email;
-              //Toast.makeText(Home.this, "EMAIL" + email , Toast.LENGTH_LONG).show();
-                Glide.with(getApplicationContext()).load(url).into(MyimageView);
 
-                UserName.setText(name.toString());
+                if (Mod != null){
+
+                    String name =   Mod.name;
+                    String url = Mod.imageUrl;
+                    String email = Mod.email;
+                    UserName.setText(name.toString());
+                    //Toast.makeText(Home.this, "EMAIL" + email , Toast.LENGTH_LONG).show();
+                    Glide.with(getApplicationContext()).load(url).into(MyimageView);
+
+                }
+
+
 
                 progressDialog.dismiss();
 
@@ -264,6 +272,6 @@ public class Home extends AppCompatActivity implements  View.OnClickListener {
 
 
     }
-
+    }
 
 }

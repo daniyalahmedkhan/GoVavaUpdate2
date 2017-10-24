@@ -70,7 +70,7 @@ public class RegistrationActivity extends Activity {
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
         firebaseAuth = FirebaseAuth.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
-        progressDialog = new ProgressDialog(this);
+       // progressDialog = new ProgressDialog(this);
         t1 = (TextView) findViewById(R.id.RegName);
         t2 = (TextView) findViewById(R.id.RegEmail);
         t3 = (TextView) findViewById(R.id.RegSign);
@@ -103,7 +103,7 @@ public class RegistrationActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                ValidationMethod();
+                RegUser();
 
             }
         });
@@ -121,85 +121,129 @@ public class RegistrationActivity extends Activity {
 
     /// Input field Validation Method //
 
-    public void ValidationMethod(){
-
-        progressDialog.setCancelable(true);
-        progressDialog.setMessage("Please Wait");
-        progressDialog.show();
-       String  name = e1.getText().toString().trim();
-       String  email = e2.getText().toString().trim();
-       String  pass = e3.getText().toString().trim();
-       String  conPass = e4.getText().toString().trim();
-       String  adress = e5.getText().toString().trim();
-       String  phone = e6.getText().toString().trim();
-
-
+    public void Validation(){
+//        progressDialog.setCancelable(false);
+//
+//        progressDialog.setMessage("Please Wait");
+//        progressDialog.show();
+       Uname = e1.getText().toString().trim();
+       Uemail = e2.getText().toString().trim();
+       Upass = e3.getText().toString().trim();
+       Uconpass  = e4.getText().toString().trim();
+       Uadress = e5.getText().toString().trim();
+       Uphone = e6.getText().toString().trim();
 
 
-        if((TextUtils.isEmpty(name)) || (TextUtils.isEmpty(email)) ||
-                (TextUtils.isEmpty(pass)) || (TextUtils.isEmpty(conPass)) ||
-                (TextUtils.isEmpty(adress)) || TextUtils.isEmpty(phone)){
-
-            Toast.makeText(RegistrationActivity.this , " Validation Required " , Toast.LENGTH_SHORT).show();
-            progressDialog.cancel();
-        }else if(!(email.contains("@gmail.com")) || (email.contains("@yahoo.com")) ||
-
-                (email.contains("@hotmail.com")) || (email.contains("@live.com"))){
 
 
-            e2.setError("Please enter valid email");
-            progressDialog.cancel();
+//        if((TextUtils.isEmpty(Uname)) || (TextUtils.isEmpty(Uemail)) ||
+//                (TextUtils.isEmpty(Upass)) || (TextUtils.isEmpty(Uconpass)) ||
+//                (TextUtils.isEmpty(Uadress)) || TextUtils.isEmpty(Uphone)){
+//
+//            Toast.makeText(RegistrationActivity.this , " Validation Required " , Toast.LENGTH_SHORT).show();
+//            progressDialog.cancel();
+//        }else if(!((Uemail.contains("@gmail.com")) || (Uemail.contains("@yahoo.com")) ||
+//
+//                (Uemail.contains("@hotmail.com")) || (Uemail.contains("@live.com")))){
+//
+//
+//            e2.setError("Please enter valid email");
+//            progressDialog.cancel();
+//
+//        }else if(e3.length() < 6){
+//
+//
+//            e3.setError("Password must contains 6 digits");
+//            progressDialog.cancel();
+//        }else{
+//
+//            //Toast.makeText(RegistrationActivity.this , " Good to Go " , Toast.LENGTH_SHORT).show();
+//
+////            Uname = e1.getText().toString().trim();
+////            Uemail = e2.getText().toString().trim();
+////            Upass = e3.getText().toString().trim();
+////            Uconpass = e4.getText().toString().trim();
+////            Uadress = e5.getText().toString().trim();
+////            Uphone = e6.getText().toString().trim();
+//            RegUser();
+//
+//        }
 
-        }else if(e3.length() < 6){
-
-
-            e3.setError("Password must contains 6 digits");
-            progressDialog.cancel();
-        }else{
-
-            //Toast.makeText(RegistrationActivity.this , " Good to Go " , Toast.LENGTH_SHORT).show();
-
-            Uname = e1.getText().toString().trim();
-            Uemail = e2.getText().toString().trim();
-            Upass = e3.getText().toString().trim();
-            Uconpass = e4.getText().toString().trim();
-            Uadress = e5.getText().toString().trim();
-            Uphone = e6.getText().toString().trim();
-            RegUser();
-
-        }
-
-
+        RegUser();
     }
 
 
     public void RegUser() {
+
+//        progressDialog.setCancelable(false);
+//        progressDialog.setMessage("Please Wait");
+//        progressDialog.show();
+        Uname = e1.getText().toString().trim();
+        Uemail = e2.getText().toString().trim();
+        Upass = e3.getText().toString().trim();
+        Uconpass  = e4.getText().toString().trim();
+        Uadress = e5.getText().toString().trim();
+        Uphone = e6.getText().toString().trim();
+
 
 
         firebaseAuth.createUserWithEmailAndPassword(Uemail , Upass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
-                UID = firebaseAuth.getCurrentUser().getUid();
-              //  Log.d("userid" ,  UID.toString());
-                //FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-                //Toast.makeText(RegistrationActivity.this , " Success" , Toast.LENGTH_SHORT).show();
-                //Toast.makeText(RegistrationActivity.this , " " + currentFirebaseUser , Toast.LENGTH_SHORT).show();
+
             }
         }).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
 
+                UID = firebaseAuth.getCurrentUser().getUid();
                 uploadfile();
 
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                //Toast.makeText(RegistrationActivity.this , "Failed to Add" , Toast.LENGTH_SHORT).show();
             }
         });
 
+
+
+    }
+
+
+    private void uploadfile(){
+
+
+        if (filepath != null){
+            StorageReference riversRef = storageReference.child("images/"+UID+"/profile.jpg");
+            /// MAIN FOLDER MAIN JA K UID KA FOLDER HOGA THEN IMAGE HOGI:
+            riversRef.putFile(filepath)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Uri downUrl = taskSnapshot.getDownloadUrl();
+                            // Log.d("downUrl" , downUrl.toString());
+                            imageUrl = downUrl.toString();
+                            // ValidationMethod();
+                            SaveData();
+                        }
+
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+        }else {
+
+            Toast.makeText(RegistrationActivity.this , " This error from upload file" , Toast.LENGTH_SHORT).show();
+
+        }
 
 
     }
@@ -213,12 +257,12 @@ public class RegistrationActivity extends Activity {
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                 if (databaseReference.equals(databaseError)){
-                    progressDialog.dismiss();
+//                    progressDialog.dismiss();
                     Toast.makeText(RegistrationActivity.this , "Error in Saving" , Toast.LENGTH_SHORT).show();
                 }else {
 
 
-                    progressDialog.dismiss();
+//                     progressDialog.dismiss();
                     Intent i = new Intent(RegistrationActivity.this , LoginActivity.class);
                     startActivity(i);
                 }
@@ -236,43 +280,6 @@ public class RegistrationActivity extends Activity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select any image") , PICK_IMAGE_REQUEST);
-
-
-    }
-
-
-    private void uploadfile(){
-
-
-        if (filepath != null){
-        StorageReference riversRef = storageReference.child("images/"+UID+"/profile.jpg");
-        /// MAIN FOLDER MAIN JA K UID KA FOLDER HOGA THEN IMAGE HOGI:
-        riversRef.putFile(filepath)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Uri downUrl = taskSnapshot.getDownloadUrl();
-                            Log.d("downUrl" , downUrl.toString());
-                        imageUrl = downUrl.toString();
-                       // ValidationMethod();
-                        SaveData();
-                    }
-
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-
-        }else {
-
-            Toast.makeText(RegistrationActivity.this , " This error from upload file" , Toast.LENGTH_SHORT).show();
-
-        }
 
 
     }

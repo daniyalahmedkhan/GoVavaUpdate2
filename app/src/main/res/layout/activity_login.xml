@@ -251,11 +251,20 @@
                 />
 
 
+
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@mipmap/twitter_icon"
+                android:onClick="onClick"
+                android:id="@+id/twitter"
                 />
+
+            <com.twitter.sdk.android.core.identity.TwitterLoginButton
+                android:id="@+id/login_button2"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
