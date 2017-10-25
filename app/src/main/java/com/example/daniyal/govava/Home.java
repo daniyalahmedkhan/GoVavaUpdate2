@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.linkedin.platform.LISessionManager;
 
 import static android.R.attr.name;
 
@@ -228,6 +229,7 @@ public class Home extends AppCompatActivity implements  View.OnClickListener {
 
                 FirebaseAuth.getInstance().signOut();
                 LoginManager.getInstance().logOut();
+                LISessionManager.getInstance(getApplicationContext()).clearSession();
                 i = new Intent(Home.this, LoginActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

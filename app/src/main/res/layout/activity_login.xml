@@ -268,13 +268,22 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:id="@+id/Linkedin"
+                android:onClick="onClick"
                 android:src="@mipmap/linkedin_icon"
                 />
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:id="@+id/google"
+                android:onClick="onClick"
                 android:src="@mipmap/googlplus_icon"
                 />
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/sign_in_button"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="wrap_content" />
 
 
 
