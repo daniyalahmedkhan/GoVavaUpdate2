@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
+
+
     compileSdkVersion 26
     buildToolsVersion "26.0.0"
     defaultConfig {
@@ -17,12 +19,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
+
     })
 
 
@@ -42,7 +46,12 @@ dependencies {
     compile 'com.twitter.sdk.android:twitter-core:3.1.1'
     compile 'com.google.android.gms:play-services-auth:11.0.0'
 
+
+
+
+
     compile 'com.facebook.android:facebook-login:[4,5)'
+
 
 
     testCompile 'junit:junit:4.12'
@@ -54,11 +63,16 @@ dependencies {
 configurations.all {
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->
         def requested = details.requested
+
         if (requested.group == 'com.android.support') {
             if (!requested.name.startsWith("multidex")) {
                 details.useVersion '25.3.0'
             }
         }
+
     }
+
 }
+
+
 apply plugin: 'com.google.gms.google-services'

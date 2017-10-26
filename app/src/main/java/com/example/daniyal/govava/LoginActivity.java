@@ -10,6 +10,8 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
+import android.media.session.MediaSession;
+import android.os.Debug;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +37,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.TwitterAuthProvider;
+import com.linkedin.platform.LISession;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterAuthToken;
@@ -70,6 +73,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.twitter.sdk.android.core.Callback;
@@ -89,7 +95,10 @@ import com.linkedin.platform.utils.Scope;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static android.R.attr.customTokens;
 import static android.R.attr.data;
+import static android.R.attr.id;
+import static android.R.attr.numberPickerStyle;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -113,6 +122,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     SignInButton signInButton;
     private AccessTokenTracker accessTokenTracker;
     private ProfileTracker profileTracker;
+    public  static String Uid;
+    String tok;
 
 
     @Override
@@ -137,6 +148,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance().getReference("users");
         progressDialog = new ProgressDialog(this);
+
+
 
         t1 = (TextView) findViewById(R.id.HeadingSgn);
         t2 = (TextView) findViewById(R.id.Signup);
@@ -312,6 +325,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         }
         LISessionManager.getInstance(getApplicationContext()).onActivityResult(this, requestCode, resultCode, data);
+//        Log.d("tok" , tok);
 
     }
 
@@ -541,13 +555,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         LISessionManager.getInstance(getApplicationContext()).init(this, buildScope(), new AuthListener() {
             @Override
             public void onAuthSuccess() {
-                // Authentication was successful.  You can now do
-                // other calls with the SDK.
-//                imgLogin.setVisibility(View.GONE);
-//                btnLogout.setVisibility(View.VISIBLE);
-//                imgProfile.setVisibility(View.VISIBLE);
-//                txtDetails.setVisibility(View.VISIBLE);
+
+//                tok =  LISessionManager.getInstance(getApplicationContext()).getSession().getAccessToken().getValue() ;
+//                Log.d("tok" , tok);
+//
+
+
                 fetchPersonalInfo();
+
             }
 
             @Override
@@ -573,6 +588,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String url = "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,public-profile-url,picture-url,email-address,picture-urls::(original))";
 
         APIHelper apiHelper = APIHelper.getInstance(getApplicationContext());
+
         apiHelper.getRequest(this, url, new ApiListener() {
             @Override
             public void onApiSuccess(ApiResponse apiResponse) {
@@ -584,18 +600,48 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     String pictureUrl = jsonObject.getString("pictureUrl");
                     String id = jsonObject.getString("id");
                     String emailAddress = jsonObject.getString("emailAddress");
+                    Uid = id;
 
-                  //  Picasso.with(getApplicationContext()).load(pictureUrl).into(imgProfile);
 
-//                    StringBuilder sb = new StringBuilder();
-//                    sb.append("First Name: "+firstName);
-//                    sb.append("\n\n");
-//                    sb.append("Last Name: "+lastName);
-//                    sb.append("\n\n");
-//                    sb.append("Email: "+emailAddress);
-                   // txtDetails.setText(sb);
+                    Intent intent = new Intent(LoginActivity.this , Home.class);
+                    startActivity(intent);
+//                    Log.d("CHECK" , id+ " "+ firstName + lastName + pictureUrl + emailAddress);
 
-                   Log.d("CHECK" , id+ " "+ firstName + lastName + pictureUrl + emailAddress);
+//                    AuthCredential credential = LISessionManager.getInstance().
+
+
+//                    MyFirebaseInstance myFirebaseInstance = new MyFirebaseInstance();
+//                    myFirebaseInstance.onTokenRefresh();
+//                    String token1 = MyFirebaseInstance.token;
+//                    String customToken = FirebaseAuth.getInstance().createCustomTokenAsync(tok).get();
+                   // Log.d("customToken" , String.valueOf(customToken));
+
+
+//
+//                    firebaseAuth.signInWithCustomToken(tok)
+//                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<AuthResult> task) {
+//                                    if (task.isSuccessful()) {
+//                                        // Sign in success, update UI with the signed-in user's information
+//                                        Log.d(TAG, "signInWithCustomToken:success");
+//                                        FirebaseUser user = firebaseAuth.getCurrentUser();
+////                                        updateUI(user);
+//                                    } else {
+//                                        // If sign in fails, display a message to the user.
+//                                        Log.w(TAG, "signInWithCustomToken:failure", task.getException());
+//                                        Toast.makeText(LoginActivity.this, "Authentication failed.",
+//                                                Toast.LENGTH_SHORT).show();
+////                                        updateUI(null);
+//                                    }
+//                                }
+//                            });
+
+
+
+
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -607,6 +653,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Log.e("NIKHIL",liApiError.getMessage());
             }
         });
+
+
     }
 
 
@@ -668,7 +716,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             signIn();
         }else if ( view == Linkedin){
 
-            handleLogin();
+          //  handleLogin();
         }
     }
 }

@@ -103,6 +103,7 @@ public class RegistrationActivity extends Activity {
             @Override
             public void onClick(View v) {
 
+                Toast.makeText(RegistrationActivity.this , "Please Wait....." , Toast.LENGTH_LONG).show();
                 RegUser();
 
             }
